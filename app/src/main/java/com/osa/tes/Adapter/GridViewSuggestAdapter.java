@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.osa.tes.Common.Common;
 import com.osa.tes.MainActivity;
@@ -18,6 +19,7 @@ public class GridViewSuggestAdapter extends BaseAdapter {
     private List<String> suggestSource;
     private Context context;
     private MainActivity mainActivity;
+    public static int chance = 1;
 
     public GridViewSuggestAdapter(List<String> suggestSource, Context context, MainActivity mainActivity) {
         this.suggestSource = suggestSource;
@@ -85,10 +87,42 @@ public class GridViewSuggestAdapter extends BaseAdapter {
 
                         }
                         else {
-//                            mainActivity.suggestSource.set(position,"");
-                            mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource,context,mainActivity);
-                            mainActivity.gridViewSuggest.setAdapter(mainActivity.suggestAdapter);
-                            mainActivity.suggestAdapter.notifyDataSetChanged();
+
+                            chance++;
+                            for (int i =0; i<chance; i++){
+                                int kesempatan = i;
+                                if (kesempatan == 0){
+                                    mainActivity.img[0].setVisibility(View.VISIBLE);
+                                    mainActivity.img[1].setVisibility(View.VISIBLE);
+                                    mainActivity.img[2].setVisibility(View.VISIBLE);
+
+                                } else if (kesempatan == 1){
+                                    mainActivity.img[0].setVisibility(View.INVISIBLE);
+                                    mainActivity.suggestSource.set(position,"");
+                                    mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource,context,mainActivity);
+                                    mainActivity.gridViewSuggest.setAdapter(mainActivity.suggestAdapter);
+                                    mainActivity.suggestAdapter.notifyDataSetChanged();
+                                }else if (kesempatan == 2){
+                                    mainActivity.img[1].setVisibility(View.INVISIBLE);
+                                    mainActivity.suggestSource.set(position,"");
+                                    mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource,context,mainActivity);
+                                    mainActivity.gridViewSuggest.setAdapter(mainActivity.suggestAdapter);
+                                    mainActivity.suggestAdapter.notifyDataSetChanged();
+                                }
+                                else if (kesempatan == 3){
+                                    mainActivity.img[2].setVisibility(View.INVISIBLE);
+                                    mainActivity.suggestSource.set(position,"");
+                                    mainActivity.suggestAdapter = new GridViewSuggestAdapter(mainActivity.suggestSource,context,mainActivity);
+                                    mainActivity.gridViewSuggest.setAdapter(mainActivity.suggestAdapter);
+                                    mainActivity.suggestAdapter.notifyDataSetChanged();
+
+                                }
+                            }
+
+//                            for (int i=0; i<mainActivity.img.length; i++){
+//                                int chance = i;
+
+//                            }
                         }
 
                     }

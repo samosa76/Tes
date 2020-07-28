@@ -42,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
     public char[] answer;
     public char[] jawab;
 
+    public static int nilai= 0;
+
     String correct_answer;
+
+    public ImageView[] img;
+    public int numParts=3;
 
 
     @Override
@@ -56,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void Initialization() {
 
+        img = new ImageView[numParts];
+
+        img[0] = (ImageView)findViewById(R.id.img1);
+        img[1] = (ImageView)findViewById(R.id.img2);
+        img[2] = (ImageView)findViewById(R.id.img3);
+
         gridViewAnswer  = (GridView)findViewById(R.id.gridViewAnswer);
         gridViewSuggest = (GridView)findViewById(R.id.gridViewOption);
 
@@ -65,15 +76,19 @@ public class MainActivity extends AppCompatActivity {
 
         btnSubmmit = (Button)findViewById(R.id.btnSubmmit);
 
+
         btnSubmmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String result= "";
+
+
                 for (int i=0; i< Common.user_submmit_answer.length; i++)
                     result+=String.valueOf(Common.user_submmit_answer[i]);
 
                 if (result.equals(correct_answer)){
-                    Toast.makeText(getApplicationContext(), "Betull", Toast.LENGTH_SHORT).show();
+                    nilai++;
+                    Toast.makeText(getApplicationContext(), "Betull"+nilai, Toast.LENGTH_SHORT).show();
 
                     //reset
                     Common.count = 0;
@@ -89,6 +104,9 @@ public class MainActivity extends AppCompatActivity {
                     suggestAdapter.notifyDataSetChanged();
                     
                     setUpList();
+
+
+
                 }
                 else{
                     Toast.makeText(MainActivity.this, "Incorrect", Toast.LENGTH_SHORT).show();
@@ -109,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         correct_answer = correct_answer.substring(correct_answer.lastIndexOf("/")+1);
 
         answer = correct_answer.toCharArray();
+        jawab = new char[Common.alphabet_character.length];
 
 //        String suggest = Common.alphabet_character.toString().replaceAll(",","");
 //        jawab = suggest.substring(1, suggest.length()-1).replaceAll(" ","").toCharArray();
@@ -123,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Random add some character
-        for (int i = Common.alphabet_character.length; i<Common.alphabet_character.length*2; i++)
+        for (int i = answer.length; i<answer.length*2; i++)
             suggestSource.add(Common.alphabet_character[random.nextInt(Common.alphabet_character.length)]);
 
         //mengacak urutan
