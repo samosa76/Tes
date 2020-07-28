@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center_horizontal"
+        android:layout_above="@+id/btnSubmmit"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgTes"
+            android:layout_width="match_parent"
+            android:layout_height="200dp" />
+
+        <GridView
+
+            android:id="@+id/gridViewAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:columnWidth="40dp"
+            android:horizontalSpacing="4dp"
+            android:numColumns="auto_fit"
+            android:padding="4dp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth" />
+
+        <GridView
+            android:id="@+id/gridViewOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:columnWidth="40dp"
+            android:horizontalSpacing="4dp"
+            android:numColumns="auto_fit"
+            android:padding="4dp"
+            android:scrollbars="none"
+            android:stretchMode="columnWidth" />
+    </LinearLayout>
+
+    <Button
+        android:text="SUBMMIT"
+        android:id="@+id/btnSubmmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>
